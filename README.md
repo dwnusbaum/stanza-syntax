@@ -13,3 +13,8 @@ Sublime Text syntax highlighting for the [Stanza](http://lbstanza.org) programmi
     `~/Library/Application Support/Sublime Text 2/Packages/`
 * Windows:
     `%APPDATA%/Sublime Text 2/Packages/`
+
+##Contributing
+
+Pull requests should contain your changes to both the .YAML-tmLanguage file and the converted .tmLanguage file.
+Use [PackageDev](https://github.com/SublimeText/PackageDev) to do the conversion.
