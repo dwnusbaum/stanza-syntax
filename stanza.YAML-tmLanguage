@@ -1,0 +1,270 @@
+---
+name: Stanza
+scopeName: source.stanza
+fileTypes: [stanza]
+uuid: a88f61d8-d025-40a1-9087-91806d7fa16f
+
+patterns:
+- name: comment.line.semicolon.stanza
+  match: ;.*$
+
+- name: keyword.control.stanza
+  match: (?<=[,.:&|<>\[\]{}() \r\n])(and|as|by|else|for|generate|if|in|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&|<>\[\]{}() \r\n])
+
+- name: keyword.other.stanza
+  match: ((^)|(?<=[,.:&|<>\[\]{}() \r\n]))(let|with|where)(?=[,.:&|<>\[\]{}() \r\n])
+
+- name: support.function.stanza
+  match: |
+      (?x)
+      (?<=[,.:&|<>\[\]{}() \r\n])
+      (abs|acos|active\?|add\-all|add\-gc\-notifier|add|all\?|any\?|append\-all|append|arithmetic\-shift\-right|asin|atan2|atan|
+      bits\-as\-double|bits\-as\-float|bits|bit\-and|bit\-nor|bit\-or|bit\-xor|break|but\-last|BYTE\-MAX|BYTE\-MIN|
+      call\-system|cat\-all|cat|ceil\-log2|ceil|clear|close|column|command\-line\-arguments|compare|complement|cons|contains\?|cosh|cos|count|current\-output\-stream|current\-time\-ms|current\-time\-us|
+      default|delete\-file|digit\?|divide|do\-indented|do|dynamic\-wind|
+      empty\?|end|equal\?|exit|exp|
+      fatal|filename|file\-exists?|fill|filter|first|find\!|find|floor\-log2|floor|free|
+      genid|gensym|get\-byte|get\-chars|get\-char|get\-double|get\-env|get\-float|get\-int|get\-long|get|greater\-eq\?|greater\?|
+      hash|head\-n|head|
+      inclusive|indented|index\-of\-chars|index\-of\-char|index\-of\!|index\-of|index\-when\!|index\-when|info|INT\-MAX|INT\-MIN|in\-reverse|item|
+      join|
+      key\?|
+      last\-index\-of\-chars|last\-index\-of\-char|last|lazy\-qsort|lengthen|length|less\-eq\?|less\?|letter\?|line|log10|log|LONG\-MAX|LONG\-MIN|lookup\?|lower\-case\?|lower\-case|
+      marker\!|marker|map\!|map|matches\?|maximum|max|minimum|minus|min|modulo|
+      name|negate|next\-pow2|next|norm\-path|none\?|not\-equal\?|
+      open\?|
+      parallel\-seq|peek\?|peek|PI|plus|pop|pow|prefix\?|prev\-pow2|println\-all|println|print\-all|print|product|
+      qualified\?|qualifier|qsort\!|
+      rand|reduce\-right|reduce|remove\-item|remove\-when|remove|repeat\-while|repeatedly|repeat|replace|resolve\-path|resume|reverse\!|reverse|round|
+      set\-env|set\-length|set|seq\-cat|seq\-append|seq\?|seq|shift\-left|shift\-right|shorten|sinh|sin|slurp|split|spit|sqrt|STANDARD\-ERROR\-STREAM|STANDARD\-INPUT\-STREAM|STANDARD\-OUTPUT\-STREAM|start|step|stop|string\-join|suffix\?|sum|suspend|symbol\-join|
+      tail\-n|tail|take\-n|take\-until|take\-up\-to\-n|take\-while|tanh|tan|ranspose|trim|times|time|to\-array|to\-byte|to\-char|to\-degrees|to\-double|to\-float|to\-int|to\-long|to\-radians|to\-seq|to\-string|to\-symbol|to\-tuple|
+      unique|unwrap\-all|unwrap\-token|update|upper\-case\?|upper\-case|
+      value\!|value|with\-attempt|
+      with\-error\-handler|with\-exception\-handler|with\-finally|with\-output\-file|write\-all|write|
+      zip\-all|zip)
+      (?=[, ]*(\(|\{|\$|:))
+
+- name: constant.language.stanza
+  match: (?<=[,.:&|<>\[\]{}() \r\n])(true|false)(?=[,.:&|<>\[\]{}() \r\n])
+
+- name: constant.numeric.stanza
+  match: (?<=[,.:&|<>\[\]{}() \r\n])(-?[0-9][0-9]*[Ll]?)(?=[,.:&|<>\[\]{}() \r\n])
+
+- name: string.quoted.single.stanza
+  match: \'((\\[bnrt])|.)\'
+  captures:
+    '2': {name: constant.character.escape.stanza}
+
+- name: string.quoted.double.stanza
+  begin: \"
+  end: \"
+  patterns:
+  - name: constant.character.escape.stanza
+    match: \\[nrt\\]
+  - name: constant.character.placeholder.stanza
+    match: \%_
+  - match: ([^\\])
+
+- include: '#operators'
+
+- include: '#predefined-types'
+- include: '#parameters'
+
+- name: meta.package.stanza
+  match: (^)(defpackage)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
+  captures:
+    '2': {name: keyword.other.stanza}
+    '4': {name: support.other.module.stanza}
+
+- name: meta.import.stanza
+  match: ((^)|(?<=[,.:&|<>\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
+  captures:
+    '3': {name: keyword.other.stanza}
+    '5': {name: support.other.module.stanza}
+
+- name: meta.extern.stanza
+  begin: (^[, ]*)((public|protected)([, ]+))?(extern)([, ]*)([^,.:&|<>\[\]{}() \r\n]+)([, ]*)(:)
+  beginCaptures:
+    '3': {name: storage.modifier.stanza}
+    '5': {name: keyword.other.stanza}
+    '7': {name: entity.name.function.stanza}
+    '9': {name: keyword.operator.stanza}
+  end: $
+  patterns:
+  - include: '#types'
+  - include: '#parameters'
+
+- name: meta.type.stanza
+  begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(struct|type))
+  beginCaptures:
+    '3': {name: storage.modifier.stanza}
+    '6': {name: keyword.other.stanza}
+    '8': {name: keyword.other.stanza}
+  end: $
+  patterns:
+  - include: '#types'
+  - include: '#parameters'
+
+- name: meta.function.stanza
+  begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^,.:&|<>\[\]{}() \r\n]*)
+  beginCaptures:
+    '3': {name: storage.modifier.stanza}
+    '6': {name: keyword.other.stanza}
+    '8': {name: keyword.other.stanza}
+    '11': {name: entity.name.function.stanza}
+  end: (:)|$
+  endCaptures:
+    '1': {name: keyword.operator.stanza}
+  patterns:
+  - include: '#parameters'
+  - include: '#types'
+
+- name: meta.function.anonymous.stanza
+  patterns:
+  - begin: (^|[, ]+)(fn\*?)([, \r\n])+
+    beginCaptures:
+      '2': {name: keyword.other.stanza}
+    end: (:)|$
+    endCaptures:
+      '1': {name: keyword.operator.stanza}
+    patterns:
+    - include: '#types'
+    - include: '#parameters'
+  - begin: ({)
+    beginCaptures:
+      '1': {name: keyword.operator.stanza}
+    end: (})
+    endCaptures:
+      '1': {name: keyword.operator.stanza}
+    patterns:
+    - name: variable.language.stanza
+      match: (?<=[,.:&|<>\[\]{}() \r\n])(_)(?=[,.:&|<>\[\]{}() \r\n])
+    - include: '$self'
+
+- name: meta.definition.variable.stanza
+  patterns:
+  - begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(resource|val|var)([, ]+)
+    beginCaptures:
+      '3': {name: storage.modifier.stanza}
+      '6': {name: keyword.other.stanza}
+      '8': {name: keyword.other.stanza}
+    end: (=|$)
+    endCaptures:
+      '1': {name: keyword.operator.stanza}
+    patterns:
+    - begin: \[(?=.*:.*\])
+      end: \]
+      patterns:
+      - begin: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)([, ]*)(:)([, ]*)
+        beginCaptures:
+          '3': {name: keyword.operator.stanza}
+        end: (,)|(?=\])
+        patterns:
+        - include: '#types'
+    - begin: (:)
+      beginCaptures:
+        '1': {name: keyword.operator.stanza}
+      end: ([ ]|(?==))
+      patterns:
+      - include: '#types'
+
+- name: meta.type.new.stanza
+  begin: ([, ]*)(new)([, ]+)
+  beginCaptures:
+    '2': {name: keyword.other.stanza}
+  end: (:)|$
+  endCaptures:
+    '1': {name: keyword.operator.stanza}
+  patterns:
+  - include: '#types'
+
+repository:
+  predefined-types:
+    patterns:
+    - name: support.type.stanza
+      match: |
+        (?x)
+        (?<=[,.:&|<>\[\]{}() \r\n])(
+          Array|
+          Byte|byte|
+          CharArray|Char|Collection|Comparable|Coroutine|
+          Double|double|
+          Equalable|Exception|
+          False|FileCloseException|FileDeletionError|FileInfo|FileInputStream|FileOpenException|FileOutputStream|FileReadException|FileWriteException|Float|float|
+          Generator|GenSymbol|
+          Hashable|HashTable|
+          IndentedStream|IndexedCollection|Int|int|IOException|
+          KeyValue|
+          LabeledScope|Lengthable|List|LivenessMarker|LivenessTracker|Long|long|
+          Maybe|MicrosecondTimer|MillisecondTimer|
+          None|
+          One|OutputStream|
+          PiggybackTimer|ptr|
+          Range|ref|Resource|
+          Queue|
+          Seqable|Seq|SetEnvException|StringBuffer|StringInputStream|StringSymbol|String|Symbol|SystemCallException|
+          Table|Timer|Token|Tuple|True|
+          Vector
+        )(?=[,.:&|<>\[\]{}() \r\n])
+    - name: variable.language.stanza
+      match: (?<=[,.:&|<>\[\]{}() \r\n])\?(?=[,.:&|<>\[\]{}() \r\n])
+  operators:
+    patterns:
+    - name: keyword.operator.stanza
+      match: (?<=[,.:&|<>\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&|<>\[\]{}() \r\n])
+    - name: keyword.operator.stanza
+      match: ([.:&<>|/])
+  types:
+    name: meta.type.stanza
+    patterns:
+    - begin: (<:|->|\|)[ ]*
+      beginCaptures:
+        '1': {name: keyword.operator.stanza}
+      end: (?=[,.:&|<>\[\]{}() \r\n])
+      patterns:
+      - include: '#types'
+    - begin: (<)
+      beginCaptures:
+        '1': {name: keyword.operator.stanza}
+      end: (>)
+      endCaptures:
+        '1': {name: keyword.operator.stanza}
+      patterns:
+      - include: '#types'
+    - begin: (\[)
+      end: (\])
+      patterns:
+      - include: '#types'
+    - include: '#predefined-types'
+    - name: storage.type.stanza
+      match: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)
+
+  parameters:
+    name: meta.list.parameter.stanza
+    patterns:
+    - match: \([, ]*\)
+    - begin: \((?=.*(:|this).*\))
+      end: \)
+      patterns:
+      - name: variable.language.stanza
+        match: (?<=[,.:&|<>\[\]{}() \r\n])(this)(?=[,.:&|<>\[\]{}() \r\n])
+      - begin: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)([, ]*)(:)([, ]*)
+        beginCaptures:
+          '1': {name: variable.parameter.stanza}
+          '3': {name: keyword.operator.stanza}
+        end: (,)|(?=\))
+        patterns:
+        - include: '#types'
+    - match: \[[, ]*\]
+    - begin: \[(?=.*:.*\])
+      end: \]
+      patterns:
+      - begin: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)([, ]*)(:)([, ]*)
+        beginCaptures:
+          '1': {name: variable.parameter.stanza}
+          '3': {name: keyword.operator.stanza}
+        end: (,)|(?=\])
+        patterns:
+        - include: '#types'
+
+# Word boundary for Stanza: [,.:&|<>[]{}() \r\n]
