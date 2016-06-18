@@ -3,16 +3,9 @@ Sublime Text syntax highlighting for the [Stanza](http://lbstanza.org) programmi
 
 ## Installation
 
-**Recommended:** Install [Package Control](https://sublime.wbond.net/installation), and then open the Command Palette (Control+Shift+p on Linux/Windows, Command+Shift+p on OS X). Select "Package Control: Install Package", then select `Stanza-Syntax`.
+**Recommended:** Install [Package Control](https://sublime.wbond.net/installation), and then open the Command Palette, select "Package Control: Install Package", then select `Stanza Syntax`.
 
-**Manual:** Download the latest source from [GitHub](https://github.com/dwnusbaum/stanza-syntax/archive/master.zip) and extract the .zip into a new directory named `Stanza` in your Sublime Text "Packages" directory, which is located at:
-
-* Linux:
-    `~/.Sublime Text 2/Packages/`
-* OS X:
-    `~/Library/Application Support/Sublime Text 2/Packages/`
-* Windows:
-    `%APPDATA%/Sublime Text 2/Packages/`
+**Manual:** Download the latest source from [GitHub](https://github.com/dwnusbaum/stanza-syntax/archive/master.zip) and extract the .zip into a new folder named `Stanza` in your Sublime Text "Packages" directory.
 
 ##Contributing
 
