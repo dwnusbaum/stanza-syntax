@@ -106,7 +106,7 @@ patterns:
   - include: '#parameters'
 
 - name: meta.function.stanza
-  begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^,.:&|<>\[\]{}() \r\n]*)
+  begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n]+)
   beginCaptures:
     '3': {name: storage.modifier.stanza}
     '6': {name: keyword.other.stanza}

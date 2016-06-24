@@ -245,7 +245,7 @@ zip\-all|zip)
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^,.:&amp;|&lt;&gt;\[\]{}() \r\n]*)</string>
+			<string>(^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n]+)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>11</key>
