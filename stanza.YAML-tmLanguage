@@ -41,6 +41,7 @@ patterns:
       unique|unwrap\-all|unwrap\-token|update|upper\-case\?|upper\-case|
       value\!|value|with\-attempt|
       with\-error\-handler|with\-exception\-handler|with\-finally|with\-output\-file|write\-all|write|
+      yield|
       zip\-all|zip)
       (?=[, ]*(\(|\{|\$|:))
 
