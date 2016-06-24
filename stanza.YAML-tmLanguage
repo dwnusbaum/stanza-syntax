@@ -246,7 +246,7 @@ repository:
     name: meta.list.parameter.stanza
     patterns:
     - match: \([, ]*\)
-    - begin: \((?=.*(:|this|\").*\))
+    - begin: \((?!.*\".*)(?=.*(:|this).*\))
       end: \)
       patterns:
       - name: variable.language.stanza
