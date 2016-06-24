@@ -228,7 +228,15 @@ zip\-all|zip)
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>$</string>
+			<string>(:)|$</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.stanza</string>
+				</dict>
+			</dict>
 			<key>name</key>
 			<string>meta.type.stanza</string>
 			<key>patterns</key>

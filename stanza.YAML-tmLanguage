@@ -100,7 +100,9 @@ patterns:
     '3': {name: storage.modifier.stanza}
     '6': {name: keyword.other.stanza}
     '8': {name: keyword.other.stanza}
-  end: $
+  end: (:)|$
+  endCaptures:
+    '1': {name: keyword.operator.stanza}
   patterns:
   - include: '#types'
   - include: '#parameters'
