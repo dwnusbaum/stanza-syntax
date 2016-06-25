@@ -24,7 +24,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(let|with|where)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(let|with|where)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>keyword.other.stanza</string>
 		</dict>
@@ -64,13 +64,13 @@ zip\-all|zip)
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(true|false)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(true|false)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>constant.language.stanza</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(-?[0-9][0-9]*[Ll]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(-?[0-9][0-9]*[Ll]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>constant.numeric.stanza</string>
 		</dict>
@@ -142,7 +142,7 @@ zip\-all|zip)
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(defpackage)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>^(defpackage)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>meta.package.stanza</string>
 		</dict>
@@ -161,7 +161,7 @@ zip\-all|zip)
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>meta.import.stanza</string>
 		</dict>
@@ -365,7 +365,7 @@ zip\-all|zip)
 					<array>
 						<dict>
 							<key>match</key>
-							<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(_)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+							<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(_)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 							<key>name</key>
 							<string>variable.language.stanza</string>
 						</dict>
@@ -510,7 +510,7 @@ zip\-all|zip)
 			<array>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+					<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 					<key>name</key>
 					<string>keyword.operator.stanza</string>
 				</dict>
@@ -541,7 +541,7 @@ zip\-all|zip)
 					<array>
 						<dict>
 							<key>match</key>
-							<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(this)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+							<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(this)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 							<key>name</key>
 							<string>variable.language.stanza</string>
 						</dict>
@@ -649,7 +649,7 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])\?(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+					<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])\?(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 					<key>name</key>
 					<string>variable.language.stanza</string>
 				</dict>

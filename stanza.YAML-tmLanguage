@@ -12,7 +12,7 @@ patterns:
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(and|as|by|else|for|generate|if|in|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&|<>\[\]{}() \r\n])
 
 - name: keyword.other.stanza
-  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(let|with|where)(?=[,.:&|<>\[\]{}() \r\n])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(let|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
 
 - name: support.function.stanza
   match: |
@@ -46,10 +46,10 @@ patterns:
       (?=[, ]*(\(|\{|\$|:))
 
 - name: constant.language.stanza
-  match: (?<=[,.:&|<>\[\]{}() \r\n])(true|false)(?=[,.:&|<>\[\]{}() \r\n])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(true|false)(?=[,.:&|<>\[\]{}() \r\n;])
 
 - name: constant.numeric.stanza
-  match: (?<=[,.:&|<>\[\]{}() \r\n])(-?[0-9][0-9]*[Ll]?)(?=[,.:&|<>\[\]{}() \r\n])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(-?[0-9][0-9]*[Ll]?)(?=[,.:&|<>\[\]{}() \r\n;])
 
 - name: string.quoted.single.stanza
   match: \'((\\[bnrt])|.)\'
@@ -72,13 +72,13 @@ patterns:
 - include: '#parameters'
 
 - name: meta.package.stanza
-  match: ^(defpackage)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
+  match: ^(defpackage)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n;])
   captures:
     '1': {name: keyword.other.stanza}
     '3': {name: support.other.module.stanza}
 
 - name: meta.import.stanza
-  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n;])
   captures:
     '2': {name: keyword.other.stanza}
     '4': {name: support.other.module.stanza}
@@ -141,7 +141,7 @@ patterns:
       '1': {name: keyword.operator.stanza}
     patterns:
     - name: variable.language.stanza
-      match: (?<=[,.:&|<>\[\]{}() \r\n])(_)(?=[,.:&|<>\[\]{}() \r\n])
+      match: (?<=[,.:&|<>\[\]{}() \r\n])(_)(?=[,.:&|<>\[\]{}() \r\n;])
     - include: '$self'
 
 - name: meta.definition.variable.stanza
@@ -210,11 +210,11 @@ repository:
           Vector
         )(?=[,.:&|<>\[\]{}() \r\n])
     - name: variable.language.stanza
-      match: (?<=[,.:&|<>\[\]{}() \r\n])\?(?=[,.:&|<>\[\]{}() \r\n])
+      match: (?<=[,.:&|<>\[\]{}() \r\n])\?(?=[,.:&|<>\[\]{}() \r\n;])
   operators:
     patterns:
     - name: keyword.operator.stanza
-      match: (?<=[,.:&|<>\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&|<>\[\]{}() \r\n])
+      match: (?<=[,.:&|<>\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&|<>\[\]{}() \r\n;])
     - name: keyword.operator.stanza
       match: ([.:&<>|/])
   types:
@@ -250,7 +250,7 @@ repository:
       end: \)
       patterns:
       - name: variable.language.stanza
-        match: (?<=[,.:&|<>\[\]{}() \r\n])(this)(?=[,.:&|<>\[\]{}() \r\n])
+        match: (?<=[,.:&|<>\[\]{}() \r\n])(this)(?=[,.:&|<>\[\]{}() \r\n;])
       - begin: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)([, ]*)(:)([, ]*)
         beginCaptures:
           '1': {name: variable.parameter.stanza}
