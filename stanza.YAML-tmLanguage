@@ -9,7 +9,7 @@ patterns:
   match: ;.*$
 
 - name: keyword.control.stanza
-  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(and|as|by|else|for|generate|if|in|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&|<>\[\]{}() \r\n])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(and|as|by|else|for|generate|if|in|is\-not|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&|<>\[\]{}() \r\n])
 
 - name: keyword.other.stanza
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(let|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
