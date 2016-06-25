@@ -663,7 +663,7 @@ zip\-all|zip)
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(&lt;:|-&gt;|\|)[ ]*</string>
+					<string>(&lt;:|-&gt;|\||\&amp;)[ ]*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>

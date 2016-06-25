@@ -220,7 +220,7 @@ repository:
   types:
     name: meta.type.stanza
     patterns:
-    - begin: (<:|->|\|)[ ]*
+    - begin: (<:|->|\||\&)[ ]*
       beginCaptures:
         '1': {name: keyword.operator.stanza}
       end: (?=[,.:&|<>\[\]{}() \r\n])
