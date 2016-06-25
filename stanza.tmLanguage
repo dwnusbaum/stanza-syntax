@@ -84,7 +84,7 @@ zip\-all|zip)
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\'((\\[bnrt])|.)\'</string>
+			<string>\'((\\[\\bnrt])|.)\'</string>
 			<key>name</key>
 			<string>string.quoted.single.stanza</string>
 		</dict>
@@ -579,7 +579,7 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\[(?=.*:.*\])</string>
+					<string>\[(?!.*(\"|\').*)(?=.*:.*\])</string>
 					<key>end</key>
 					<string>\]</string>
 					<key>patterns</key>

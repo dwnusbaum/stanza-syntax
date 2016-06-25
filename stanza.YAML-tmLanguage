@@ -52,7 +52,7 @@ patterns:
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(-?[0-9][0-9]*[Ll]?)(?=[,.:&|<>\[\]{}() \r\n;])
 
 - name: string.quoted.single.stanza
-  match: \'((\\[bnrt])|.)\'
+  match: \'((\\[\\bnrt])|.)\'
   captures:
     '2': {name: constant.character.escape.stanza}
 
@@ -259,7 +259,7 @@ repository:
         patterns:
         - include: '#types'
     - match: \[[, ]*\]
-    - begin: \[(?=.*:.*\])
+    - begin: \[(?!.*(\"|\').*)(?=.*:.*\])
       end: \]
       patterns:
       - begin: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)([, ]*)(:)([, ]*)
