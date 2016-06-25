@@ -99,7 +99,7 @@ zip\-all|zip)
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\\[nrt\\]</string>
+					<string>\\[nrt\\"]</string>
 					<key>name</key>
 					<string>constant.character.escape.stanza</string>
 				</dict>

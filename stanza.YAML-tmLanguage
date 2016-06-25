@@ -61,7 +61,7 @@ patterns:
   end: \"
   patterns:
   - name: constant.character.escape.stanza
-    match: \\[nrt\\]
+    match: \\[nrt\\"]
   - name: constant.character.placeholder.stanza
     match: \%_
   - match: ([^\\])
