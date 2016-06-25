@@ -17,7 +17,7 @@ patterns:
 - name: support.function.stanza
   match: |
       (?x)
-      ^|(?<=[,.:&|<>\[\]{}() \r\n])
+      (^|(?<=[,.:&|<>\[\]{}() \r\n]))
       (abs|acos|active\?|add\-all|add\-gc\-notifier|add|all\?|any\?|append\-all|append|arithmetic\-shift\-right|asin|atan2|atan|
       bits\-as\-double|bits\-as\-float|bits|bit\-and|bit\-nor|bit\-or|bit\-xor|break|but\-last|BYTE\-MAX|BYTE\-MIN|
       call\-system|cat\-all|cat|ceil\-log2|ceil|clear|close|column|command\-line\-arguments|compare|complement|cons|contains\?|cosh|cos|count|current\-output\-stream|current\-time\-ms|current\-time\-us|
@@ -72,16 +72,16 @@ patterns:
 - include: '#parameters'
 
 - name: meta.package.stanza
-  match: (^)(defpackage)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
+  match: ^(defpackage)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
+  captures:
+    '1': {name: keyword.other.stanza}
+    '3': {name: support.other.module.stanza}
+
+- name: meta.import.stanza
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
   captures:
     '2': {name: keyword.other.stanza}
     '4': {name: support.other.module.stanza}
-
-- name: meta.import.stanza
-  match: ((^)|(?<=[,.:&|<>\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n])
-  captures:
-    '3': {name: keyword.other.stanza}
-    '5': {name: support.other.module.stanza}
 
 - name: meta.extern.stanza
   begin: (^[, ]*)((public|protected)([, ]+))?(extern)([, ]*)([^,.:&|<>\[\]{}() \r\n]+)([, ]*)(:)

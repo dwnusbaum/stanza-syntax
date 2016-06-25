@@ -31,7 +31,7 @@
 		<dict>
 			<key>match</key>
 			<string>(?x)
-^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])
+(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))
 (abs|acos|active\?|add\-all|add\-gc\-notifier|add|all\?|any\?|append\-all|append|arithmetic\-shift\-right|asin|atan2|atan|
 bits\-as\-double|bits\-as\-float|bits|bit\-and|bit\-nor|bit\-or|bit\-xor|break|but\-last|BYTE\-MAX|BYTE\-MIN|
 call\-system|cat\-all|cat|ceil\-log2|ceil|clear|close|column|command\-line\-arguments|compare|complement|cons|contains\?|cosh|cos|count|current\-output\-stream|current\-time\-ms|current\-time\-us|
@@ -130,6 +130,25 @@ zip\-all|zip)
 		<dict>
 			<key>captures</key>
 			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.stanza</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>support.other.module.stanza</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^(defpackage)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<key>name</key>
+			<string>meta.package.stanza</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
@@ -142,26 +161,7 @@ zip\-all|zip)
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(^)(defpackage)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
-			<key>name</key>
-			<string>meta.package.stanza</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.stanza</string>
-				</dict>
-				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>support.other.module.stanza</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>((^)|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(import)([, \r\n]+)([^,.:&amp;|&lt;&gt;\[\]{}() \r\n]+)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
 			<key>name</key>
 			<string>meta.import.stanza</string>
 		</dict>
