@@ -18,13 +18,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(and|as|by|else|for|generate|if|in|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(and|as|by|else|for|generate|if|in|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
 			<key>name</key>
 			<string>keyword.control.stanza</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>((^)|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(let|with|where)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(let|with|where)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
 			<key>name</key>
 			<string>keyword.other.stanza</string>
 		</dict>
