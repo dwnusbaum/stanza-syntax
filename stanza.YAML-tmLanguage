@@ -17,7 +17,7 @@ patterns:
 - name: support.function.stanza
   match: |
       (?x)
-      (?<=[,.:&|<>\[\]{}() \r\n])
+      ^|(?<=[,.:&|<>\[\]{}() \r\n])
       (abs|acos|active\?|add\-all|add\-gc\-notifier|add|all\?|any\?|append\-all|append|arithmetic\-shift\-right|asin|atan2|atan|
       bits\-as\-double|bits\-as\-float|bits|bit\-and|bit\-nor|bit\-or|bit\-xor|break|but\-last|BYTE\-MAX|BYTE\-MIN|
       call\-system|cat\-all|cat|ceil\-log2|ceil|clear|close|column|command\-line\-arguments|compare|complement|cons|contains\?|cosh|cos|count|current\-output\-stream|current\-time\-ms|current\-time\-us|
