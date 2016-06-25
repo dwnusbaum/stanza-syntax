@@ -534,7 +534,7 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\((?=.*(:|this|\").*\))</string>
+					<string>\((?!.*\".*)(?=.*(:|this).*\))</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>patterns</key>
@@ -630,7 +630,7 @@ zip\-all|zip)
   False|FileCloseException|FileDeletionError|FileInfo|FileInputStream|FileOpenException|FileOutputStream|FileReadException|FileWriteException|Float|float|
   Generator|GenSymbol|
   Hashable|HashTable|
-  IndentedStream|IndexedCollection|Int|int|IOException|
+  IndentedStream|IndexedCollection|InputStream|Int|int|IOException|
   KeyValue|
   LabeledScope|Lengthable|List|LivenessMarker|LivenessTracker|Long|long|
   Maybe|MicrosecondTimer|MillisecondTimer|
