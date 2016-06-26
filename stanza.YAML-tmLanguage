@@ -78,9 +78,9 @@ patterns:
   end: \"
   patterns:
   - name: constant.character.escape.stanza
-    match: \\[nrt\\"]
+    match: (%%|\\[bnrt\\"])
   - name: constant.character.placeholder.stanza
-    match: \%_
+    match: \%[_*,~@]
   - match: ([^\\])
 
 - include: '#operators'
