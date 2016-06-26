@@ -93,7 +93,25 @@ zip\-all|zip)
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(-?[0-9][0-9]*[Ll]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(-?[0-9]+(\.[0-9]+)?((E|e)(\+|-)?[0-9]+)?[FfLl]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
+			<key>name</key>
+			<string>constant.numeric.stanza</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(0b[01]+[Ll]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
+			<key>name</key>
+			<string>constant.numeric.stanza</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(0o[0-7]+[Ll]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
+			<key>name</key>
+			<string>constant.numeric.stanza</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(0x[0-9A-Fa-f]+[FfLl]?)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>constant.numeric.stanza</string>
 		</dict>
