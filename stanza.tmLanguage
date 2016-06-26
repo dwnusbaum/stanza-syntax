@@ -319,6 +319,8 @@ zip\-all|zip)
 					<string>keyword.other.stanza</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Function definition</string>
 			<key>end</key>
 			<string>(:)|$</string>
 			<key>endCaptures</key>
@@ -329,8 +331,6 @@ zip\-all|zip)
 					<string>keyword.operator.stanza</string>
 				</dict>
 			</dict>
-			<key>name</key>
-			<string>meta.function.stanza</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -344,8 +344,8 @@ zip\-all|zip)
 			</array>
 		</dict>
 		<dict>
-			<key>name</key>
-			<string>meta.function.anonymous.stanza</string>
+			<key>comment</key>
+			<string>Anonymous function definition</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -419,8 +419,8 @@ zip\-all|zip)
 			</array>
 		</dict>
 		<dict>
-			<key>name</key>
-			<string>meta.definition.variable.stanza</string>
+			<key>comment</key>
+			<string>variable definition</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -565,8 +565,8 @@ zip\-all|zip)
 		</dict>
 		<key>parameters</key>
 		<dict>
-			<key>name</key>
-			<string>meta.list.parameter.stanza</string>
+			<key>comment</key>
+			<string>Parameter lists</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -698,8 +698,8 @@ zip\-all|zip)
 		</dict>
 		<key>types</key>
 		<dict>
-			<key>name</key>
-			<string>meta.type.stanza</string>
+			<key>comment</key>
+			<string>Type</string>
 			<key>patterns</key>
 			<array>
 				<dict>

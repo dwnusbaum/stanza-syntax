@@ -125,7 +125,7 @@ patterns:
   - include: '#types'
   - include: '#parameters'
 
-- name: meta.function.stanza
+- comment: Function definition
   begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n]+)
   beginCaptures:
     '3': {name: storage.modifier.stanza}
@@ -139,7 +139,7 @@ patterns:
   - include: '#parameters'
   - include: '#types'
 
-- name: meta.function.anonymous.stanza
+- comment: Anonymous function definition
   patterns:
   - begin: (^|[, ]+)(fn\*?)([, \r\n])+
     beginCaptures:
@@ -161,7 +161,7 @@ patterns:
       match: (?<=[,.:&|<>\[\]{}() \r\n])(_)(?=[,.:&|<>\[\]{}() \r\n;])
     - include: '$self'
 
-- name: meta.definition.variable.stanza
+- comment: variable definition
   patterns:
   - begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(resource|val|var)([, ]+)
     beginCaptures:
@@ -235,7 +235,7 @@ repository:
     - name: keyword.operator.stanza
       match: ([.:&<>|/])
   types:
-    name: meta.type.stanza
+    comment: Type
     patterns:
     - begin: (<:|->|\||\&)[ ]*
       beginCaptures:
@@ -260,7 +260,7 @@ repository:
       match: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)
 
   parameters:
-    name: meta.list.parameter.stanza
+    comment: Parameter lists
     patterns:
     - match: \([, ]*\)
     - begin: \((?![^)]*(\"|\').*)(?=.*(:|this).*\))
