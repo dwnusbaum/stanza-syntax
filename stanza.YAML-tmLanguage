@@ -12,10 +12,10 @@ patterns:
   match: \t
 
 - name: keyword.control.stanza
-  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(and|as|by|else|for|generate|if|in|is\-not|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&|<>\[\]{}() \r\n])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(catch|else|for|generate|if|labels|label|match|switch|try|when|while)(?=[,.:&|<>\[\]{}() \r\n])
 
 - name: keyword.other.stanza
-  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(let|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(as|and|by|let|in|is\-not|is|or|not|through|to|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
 
 - match: ^(public|private|protected)[, \n\r\t]*(:)[, \n\r\t]*
   captures:
@@ -45,7 +45,7 @@ patterns:
       qualified\?|qualifier|qsort\!|
       rand|reduce\-right|reduce|remove\-item|remove\-when|remove|repeat\-while|repeatedly|repeat|replace|resolve\-path|resume|reverse\!|reverse|round|
       set\-env|set\-length|set|seq\-cat|seq\-append|seq\?|seq|shift\-left|shift\-right|shorten|sinh|sin|slurp|split|spit|sqrt|STANDARD\-ERROR\-STREAM|STANDARD\-INPUT\-STREAM|STANDARD\-OUTPUT\-STREAM|start|step|stop|string\-join|suffix\?|sum|suspend|symbol\-join|
-      tail\-n|tail|take\-n|take\-until|take\-up\-to\-n|take\-while|tanh|tan|ranspose|trim|times|time|to\-array|to\-byte|to\-char|to\-degrees|to\-double|to\-float|to\-int|to\-long|to\-radians|to\-seq|to\-string|to\-symbol|to\-tuple|
+      tail\-n|tail|take\-n|take\-until|take\-up\-to\-n|take\-while|tanh|tan|throw|transpose|trim|times|time|to\-array|to\-byte|to\-char|to\-degrees|to\-double|to\-float|to\-int|to\-long|to\-radians|to\-seq|to\-string|to\-symbol|to\-tuple|
       unique|unwrap\-all|unwrap\-token|update|upper\-case\?|upper\-case|
       value\!|value|with\-attempt|
       with\-error\-handler|with\-exception\-handler|with\-finally|with\-output\-file|write\-all|write|
