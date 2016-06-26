@@ -8,6 +8,9 @@ patterns:
 - name: comment.line.semicolon.stanza
   match: ;.*$
 
+- name: invalid.illegal.stanza
+  match: \t
+
 - name: keyword.control.stanza
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(and|as|by|else|for|generate|if|in|is\-not|is|labels|label|match|not|or|switch|through|throw|to|when|while)(?=[,.:&|<>\[\]{}() \r\n])
 
