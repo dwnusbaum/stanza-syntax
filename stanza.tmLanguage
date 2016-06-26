@@ -557,7 +557,7 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\((?!.*(\"|\').*)(?=.*(:|this).*\))</string>
+					<string>\((?![^)]*(\"|\').*)(?=.*(:|this).*\))</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>patterns</key>
