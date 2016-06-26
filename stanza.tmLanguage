@@ -29,6 +29,23 @@
 			<string>keyword.other.stanza</string>
 		</dict>
 		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.modifier.stanza</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.stanza</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^(public|private|protected)[, \n\r\t]*(:)[, \n\r\t]*</string>
+		</dict>
+		<dict>
 			<key>match</key>
 			<string>(?x)
 (^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))

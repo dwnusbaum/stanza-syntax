@@ -14,6 +14,11 @@ patterns:
 - name: keyword.other.stanza
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(let|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
 
+- match: ^(public|private|protected)[, \n\r\t]*(:)[, \n\r\t]*
+  captures:
+    '1': {name: storage.modifier.stanza}
+    '2': {name: keyword.operator.stanza}
+
 - name: support.function.stanza
   match: |
       (?x)
