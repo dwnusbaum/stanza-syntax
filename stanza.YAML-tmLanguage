@@ -28,7 +28,7 @@ patterns:
       hash|head\-n|head|
       inclusive|indented|index\-of\-chars|index\-of\-char|index\-of\!|index\-of|index\-when\!|index\-when|info|INT\-MAX|INT\-MIN|in\-reverse|item|
       join|
-      key\?|
+      key\?|key|
       last\-index\-of\-chars|last\-index\-of\-char|last|lazy\-qsort|lengthen|length|less\-eq\?|less\?|letter\?|line|log10|log|LONG\-MAX|LONG\-MIN|lookup\?|lower\-case\?|lower\-case|
       marker\!|marker|map\!|map|matches\?|maximum|max|minimum|minus|min|modulo|
       name|negate|next\-pow2|next|norm\-path|none\?|not\-equal\?|
