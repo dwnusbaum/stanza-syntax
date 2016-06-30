@@ -158,7 +158,7 @@ zip\-all|zip)
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#operators</string>
+			<string>#diamond-types</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -166,7 +166,15 @@ zip\-all|zip)
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#parameters</string>
+			<string>#parameter-lists</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#toplevel-types</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#operators</string>
 		</dict>
 		<dict>
 			<key>captures</key>
@@ -244,15 +252,18 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#parameters</string>
+					<string>#parameter-lists</string>
 				</dict>
 			</array>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>(^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(struct|type))</string>
-			<key>beginCaptures</key>
+			<key>captures</key>
 			<dict>
+				<key>11</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.stanza</string>
+				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
@@ -269,34 +280,13 @@ zip\-all|zip)
 					<string>keyword.other.stanza</string>
 				</dict>
 			</dict>
-			<key>end</key>
-			<string>(:)|$</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.stanza</string>
-				</dict>
-			</dict>
+			<key>match</key>
+			<string>(^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(struct|type))([, \r\n])+([^0-9][^, :\r\n&lt;&gt;]+)</string>
 			<key>name</key>
 			<string>meta.type.stanza</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#types</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#parameters</string>
-				</dict>
-			</array>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>(^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n]+)</string>
-			<key>beginCaptures</key>
+			<key>captures</key>
 			<dict>
 				<key>11</key>
 				<dict>
@@ -321,27 +311,8 @@ zip\-all|zip)
 			</dict>
 			<key>comment</key>
 			<string>Function definition</string>
-			<key>end</key>
-			<string>(:)|$</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.stanza</string>
-				</dict>
-			</dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#parameters</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#types</string>
-				</dict>
-			</array>
+			<key>match</key>
+			<string>(^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n&lt;&gt;]+)</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -349,9 +320,7 @@ zip\-all|zip)
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(^|[, ]+)(fn\*?)([, \r\n])+</string>
-					<key>beginCaptures</key>
+					<key>captures</key>
 					<dict>
 						<key>2</key>
 						<dict>
@@ -359,27 +328,8 @@ zip\-all|zip)
 							<string>keyword.other.stanza</string>
 						</dict>
 					</dict>
-					<key>end</key>
-					<string>(:)|$</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.stanza</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#types</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#parameters</string>
-						</dict>
-					</array>
+					<key>match</key>
+					<string>(^|[, ]+)(fn\*?)([, \r\n])+</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -445,7 +395,7 @@ zip\-all|zip)
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(=|$)</string>
+					<string>(=)|$</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
@@ -488,7 +438,7 @@ zip\-all|zip)
 						</dict>
 						<dict>
 							<key>begin</key>
-							<string>(:)</string>
+							<string>(:)[, ]*</string>
 							<key>beginCaptures</key>
 							<dict>
 								<key>1</key>
@@ -545,6 +495,43 @@ zip\-all|zip)
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>diamond-types</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(&lt;)(?!:)(?=.[^\r\n]*?&gt;)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.stanza</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(&gt;)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.operator.stanza</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.type.generic.stanza</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#types</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>operators</key>
 		<dict>
 			<key>patterns</key>
@@ -563,21 +550,21 @@ zip\-all|zip)
 				</dict>
 			</array>
 		</dict>
-		<key>parameters</key>
+		<key>parameter-lists</key>
 		<dict>
-			<key>comment</key>
-			<string>Parameter lists</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\([, ]*\)</string>
+					<string>(?&lt;= )\([, ]*\)</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>\((?![^)]*(\"|\').*)(?=.*(:|this).*\))</string>
+					<string>(?&lt;= )\((?![^)]*(\"|\').*)(?=.*(:|this).*\))</string>
 					<key>end</key>
 					<string>\)</string>
+					<key>name</key>
+					<string>meta.list.parameter.stanza</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -696,25 +683,30 @@ zip\-all|zip)
 				</dict>
 			</array>
 		</dict>
-		<key>types</key>
+		<key>toplevel-types</key>
 		<dict>
-			<key>comment</key>
-			<string>Type</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(&lt;:|-&gt;|\||\&amp;)[ ]*</string>
+					<string>(((&lt;:)|(-&gt;)|\||\&amp;)|((?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])\?))[, ]*</string>
 					<key>beginCaptures</key>
 					<dict>
-						<key>1</key>
+						<key>2</key>
 						<dict>
 							<key>name</key>
 							<string>keyword.operator.stanza</string>
+						</dict>
+						<key>5</key>
+						<dict>
+							<key>name</key>
+							<string>variable.language.stanza</string>
 						</dict>
 					</dict>
 					<key>end</key>
 					<string>(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])</string>
+					<key>name</key>
+					<string>meta.type.stanza</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -723,40 +715,19 @@ zip\-all|zip)
 						</dict>
 					</array>
 				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(&lt;)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.stanza</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(&gt;)</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>keyword.operator.stanza</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#types</string>
-						</dict>
-					</array>
-				</dict>
+			</array>
+		</dict>
+		<key>types</key>
+		<dict>
+			<key>patterns</key>
+			<array>
 				<dict>
 					<key>begin</key>
 					<string>(\[)</string>
 					<key>end</key>
 					<string>(\])</string>
+					<key>name</key>
+					<string>meta.type.tuple.stanza</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -767,7 +738,15 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#toplevel-types</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#predefined-types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#diamond-types</string>
 				</dict>
 				<dict>
 					<key>match</key>

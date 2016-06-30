@@ -83,10 +83,11 @@ patterns:
     match: \%[_*,~@]
   - match: ([^\\])
 
-- include: '#operators'
-
+- include: '#diamond-types'
 - include: '#predefined-types'
-- include: '#parameters'
+- include: '#parameter-lists'
+- include: '#toplevel-types'
+- include: '#operators'
 
 - name: meta.package.stanza
   match: ^(defpackage)([, \r\n]+)([^,.:&|<>\[\]{}() \r\n]+)(?=[,.:&|<>\[\]{}() \r\n;])
@@ -110,46 +111,29 @@ patterns:
   end: $
   patterns:
   - include: '#types'
-  - include: '#parameters'
+  - include: '#parameter-lists'
 
 - name: meta.type.stanza
-  begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(struct|type))
-  beginCaptures:
+  match: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(struct|type))([, \r\n])+([^0-9][^, :\r\n<>]+)
+  captures:
     '3': {name: storage.modifier.stanza}
     '6': {name: keyword.other.stanza}
     '8': {name: keyword.other.stanza}
-  end: (:)|$
-  endCaptures:
-    '1': {name: keyword.operator.stanza}
-  patterns:
-  - include: '#types'
-  - include: '#parameters'
+    '11': {name: storage.type.stanza}
 
 - comment: Function definition
-  begin: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n]+)
-  beginCaptures:
+  match: (^[, ]*)((public|protected)([, ]+))?((lostanza)([, ]+))?(def(method\*?|multi|n\*?))([, \r\n])+([^0-9][^, :\r\n<>]+)
+  captures:
     '3': {name: storage.modifier.stanza}
     '6': {name: keyword.other.stanza}
     '8': {name: keyword.other.stanza}
     '11': {name: entity.name.function.stanza}
-  end: (:)|$
-  endCaptures:
-    '1': {name: keyword.operator.stanza}
-  patterns:
-  - include: '#parameters'
-  - include: '#types'
 
 - comment: Anonymous function definition
   patterns:
-  - begin: (^|[, ]+)(fn\*?)([, \r\n])+
-    beginCaptures:
+  - match: (^|[, ]+)(fn\*?)([, \r\n])+
+    captures:
       '2': {name: keyword.other.stanza}
-    end: (:)|$
-    endCaptures:
-      '1': {name: keyword.operator.stanza}
-    patterns:
-    - include: '#types'
-    - include: '#parameters'
   - begin: ({)
     beginCaptures:
       '1': {name: keyword.operator.stanza}
@@ -168,7 +152,7 @@ patterns:
       '3': {name: storage.modifier.stanza}
       '6': {name: keyword.other.stanza}
       '8': {name: keyword.other.stanza}
-    end: (=|$)
+    end: (=)|$
     endCaptures:
       '1': {name: keyword.operator.stanza}
     patterns:
@@ -181,7 +165,7 @@ patterns:
         end: (,)|(?=\])
         patterns:
         - include: '#types'
-    - begin: (:)
+    - begin: (:)[, ]*
       beginCaptures:
         '1': {name: keyword.operator.stanza}
       end: ([ ]|(?==))
@@ -199,6 +183,12 @@ patterns:
   - include: '#types'
 
 repository:
+  operators:
+    patterns:
+    - name: keyword.operator.stanza
+      match: (?<=[,.:&|<>\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&|<>\[\]{}() \r\n;])
+    - name: keyword.operator.stanza
+      match: ([.:&<>|/])
   predefined-types:
     patterns:
     - name: support.type.stanza
@@ -228,22 +218,10 @@ repository:
         )(?=[,.:&|<>\[\]{}() \r\n])
     - name: variable.language.stanza
       match: (?<=[,.:&|<>\[\]{}() \r\n])\?(?=[,.:&|<>\[\]{}() \r\n;])
-  operators:
+  diamond-types:
     patterns:
-    - name: keyword.operator.stanza
-      match: (?<=[,.:&|<>\[\]{}() \r\n])([~!@#$%^*+=/-]*)(?=[,.:&|<>\[\]{}() \r\n;])
-    - name: keyword.operator.stanza
-      match: ([.:&<>|/])
-  types:
-    comment: Type
-    patterns:
-    - begin: (<:|->|\||\&)[ ]*
-      beginCaptures:
-        '1': {name: keyword.operator.stanza}
-      end: (?=[,.:&|<>\[\]{}() \r\n])
-      patterns:
-      - include: '#types'
-    - begin: (<)
+    - name: meta.type.generic.stanza
+      begin: (<)(?!:)(?=.[^\r\n]*?>)
       beginCaptures:
         '1': {name: keyword.operator.stanza}
       end: (>)
@@ -251,19 +229,33 @@ repository:
         '1': {name: keyword.operator.stanza}
       patterns:
       - include: '#types'
-    - begin: (\[)
+  toplevel-types:
+    patterns:
+    - name: meta.type.stanza
+      begin: (((<:)|(->)|\||\&)|((?<=[,.:&|<>\[\]{}() \r\n])\?))[, ]*
+      beginCaptures:
+        '2': {name: keyword.operator.stanza}
+        '5': {name: variable.language.stanza}
+      end: (?=[,.:&|<>\[\]{}() \r\n])
+      patterns:
+      - include: '#types'
+  types:
+    patterns:
+    - name: meta.type.tuple.stanza
+      begin: (\[)
       end: (\])
       patterns:
       - include: '#types'
+    - include: '#toplevel-types'
     - include: '#predefined-types'
+    - include: '#diamond-types'
     - name: storage.type.stanza
       match: ([^,.:&|<>\[\]{}() \r\n]*\w[^,.:&|<>\[\]{}() \r\n]*)
-
-  parameters:
-    comment: Parameter lists
+  parameter-lists:
     patterns:
-    - match: \([, ]*\)
-    - begin: \((?![^)]*(\"|\').*)(?=.*(:|this).*\))
+    - match: (?<= )\([, ]*\)
+    - name: meta.list.parameter.stanza
+      begin: (?<= )\((?![^)]*(\"|\').*)(?=.*(:|this).*\))
       end: \)
       patterns:
       - name: variable.language.stanza
