@@ -30,26 +30,31 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(as|and|by|let|in|is\-not|is|or|not|through|to|with|where)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
+			<string>(^|(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n]))(as|and|by|let|in|is\-not|is|new|or|not|through|to|with|where)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 			<key>name</key>
 			<string>keyword.other.stanza</string>
 		</dict>
 		<dict>
 			<key>captures</key>
 			<dict>
-				<key>1</key>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>storage.modifier.stanza</string>
 				</dict>
-				<key>2</key>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.stanza</string>
+				</dict>
+				<key>4</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.operator.stanza</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>^(public|private|protected)[, \n\r\t]*(:)[, \n\r\t]*</string>
+			<string>^((public|private|protected)|(lostanza))[, \n\r\t]*(:)[, \n\r\t]*</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -125,7 +130,7 @@ zip\-all|zip)
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\'((\\[\\bnrt])|.)\'</string>
+			<string>\'((\\[\\bnrt'"])|.)\'</string>
 			<key>name</key>
 			<string>string.quoted.single.stanza</string>
 		</dict>
@@ -395,7 +400,7 @@ zip\-all|zip)
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>(=)|$</string>
+					<string>(=)|$|\n|\r</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>1</key>
@@ -461,37 +466,6 @@ zip\-all|zip)
 				</dict>
 			</array>
 		</dict>
-		<dict>
-			<key>begin</key>
-			<string>([, ]*)(new)([, ]+)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.stanza</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>(:)|$</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.operator.stanza</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>meta.type.new.stanza</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#types</string>
-				</dict>
-			</array>
-		</dict>
 	</array>
 	<key>repository</key>
 	<dict>
@@ -501,7 +475,7 @@ zip\-all|zip)
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(&lt;)(?!:)(?=.[^\r\n]*?&gt;)</string>
+					<string>(&lt;)(?!:)(?=[^\r\n]*?&gt;)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -560,7 +534,7 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(?&lt;= )\((?![^)]*(\"|\').*)(?=.*(:|this).*\))</string>
+					<string>(?&lt;= )\((?![^)]*[\"\'~!@#$%^*+=/-])(?=.*(:|this).*\))</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
@@ -677,7 +651,7 @@ zip\-all|zip)
 				</dict>
 				<dict>
 					<key>match</key>
-					<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])\?(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
+					<string>(?&lt;=[,.:&amp;|&lt;&gt;\[\]{}() \r\n])(\?|\.\.\.)(?=[,.:&amp;|&lt;&gt;\[\]{}() \r\n;])</string>
 					<key>name</key>
 					<string>variable.language.stanza</string>
 				</dict>

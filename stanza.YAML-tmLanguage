@@ -15,12 +15,13 @@ patterns:
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(attempt|catch|else|for|generate|if|labels|label|match|switch|try|when|while)(?=[,.:&|<>\[\]{}() \r\n])
 
 - name: keyword.other.stanza
-  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(as|and|by|let|in|is\-not|is|or|not|through|to|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
+  match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(as|and|by|let|in|is\-not|is|new|or|not|through|to|with|where)(?=[,.:&|<>\[\]{}() \r\n;])
 
-- match: ^(public|private|protected)[, \n\r\t]*(:)[, \n\r\t]*
+- match: ^((public|private|protected)|(lostanza))[, \n\r\t]*(:)[, \n\r\t]*
   captures:
-    '1': {name: storage.modifier.stanza}
-    '2': {name: keyword.operator.stanza}
+    '2': {name: storage.modifier.stanza}
+    '3': {name: keyword.operator.stanza}
+    '4': {name: keyword.operator.stanza}
 
 - name: support.function.stanza
   match: |
@@ -69,7 +70,7 @@ patterns:
   match: (^|(?<=[,.:&|<>\[\]{}() \r\n]))(0x[0-9A-Fa-f]+[FfLl]?)(?=[,.:&|<>\[\]{}() \r\n;])
 
 - name: string.quoted.single.stanza
-  match: \'((\\[\\bnrt])|.)\'
+  match: \'((\\[\\bnrt'"])|.)\'
   captures:
     '2': {name: constant.character.escape.stanza}
 
@@ -172,16 +173,6 @@ patterns:
       patterns:
       - include: '#types'
 
-- name: meta.type.new.stanza
-  begin: ([, ]*)(new)([, ]+)
-  beginCaptures:
-    '2': {name: keyword.other.stanza}
-  end: (:)|$
-  endCaptures:
-    '1': {name: keyword.operator.stanza}
-  patterns:
-  - include: '#types'
-
 repository:
   operators:
     patterns:
@@ -217,11 +208,11 @@ repository:
           Vector
         )(?=[,.:&|<>\[\]{}() \r\n])
     - name: variable.language.stanza
-      match: (?<=[,.:&|<>\[\]{}() \r\n])\?(?=[,.:&|<>\[\]{}() \r\n;])
+      match: (?<=[,.:&|<>\[\]{}() \r\n])(\?|\.\.\.)(?=[,.:&|<>\[\]{}() \r\n;])
   diamond-types:
     patterns:
     - name: meta.type.generic.stanza
-      begin: (<)(?!:)(?=.[^\r\n]*?>)
+      begin: (<)(?!:)(?=[^\r\n]*?>)
       beginCaptures:
         '1': {name: keyword.operator.stanza}
       end: (>)
@@ -255,7 +246,7 @@ repository:
     patterns:
     - match: (?<= )\([, ]*\)
     - name: meta.list.parameter.stanza
-      begin: (?<= )\((?![^)]*(\"|\').*)(?=.*(:|this).*\))
+      begin: (?<= )\((?![^)]*[\"\'~!@#$%^*+=/-])(?=.*(:|this).*\))
       end: \)
       patterns:
       - name: variable.language.stanza
